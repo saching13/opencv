@@ -51,6 +51,10 @@ endif(WITH_CUDA)
 
 # --- Eigen ---
 if(WITH_EIGEN AND NOT HAVE_EIGEN)
+  if(HUNTER_ENABLED)
+    hunter_add_package(Eigen)
+    find_package(Eigen3 CONFIG REQUIRED)
+  else()
   if((OPENCV_FORCE_EIGEN_FIND_PACKAGE_CONFIG
       OR NOT (CMAKE_VERSION VERSION_LESS "3.0.0")  # Eigen3Targets.cmake required CMake 3.0.0+
       ) AND NOT OPENCV_SKIP_EIGEN_FIND_PACKAGE_CONFIG
@@ -59,6 +63,7 @@ if(WITH_EIGEN AND NOT HAVE_EIGEN)
   endif()
   if(NOT Eigen3_FOUND)
     find_package(Eigen3 QUIET)
+  endif()
   endif()
 
   if(Eigen3_FOUND)

@@ -95,6 +95,12 @@ if(DEFINED CMAKE_BUILD_TYPE)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "${CMAKE_CONFIGURATION_TYPES}")
 endif()
 
+include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/cpp-pm/hunter/archive/v0.10.9.tar.gz"
+    SHA1 "53b198e364dc7bc8360fc545f798563229bd7e20"
+)
+
 option(ENABLE_PIC "Generate position independent code (necessary for shared libraries)" TRUE)
 set(CMAKE_POSITION_INDEPENDENT_CODE ${ENABLE_PIC})
 
@@ -591,6 +597,10 @@ ocv_include_directories(${OPENCV_CONFIG_FILE_INCLUDE_DIR})
 #  Path for additional modules
 # ----------------------------------------------------------------------------
 set(OPENCV_EXTRA_MODULES_PATH "" CACHE PATH "Where to look for additional OpenCV modules (can be ;-separated list of paths)")
+if(OPENCV_WITH_EXTRA_MODULES)
+  hunter_add_package(OpenCV-Extra)
+  set(OPENCV_EXTRA_MODULES_PATH "${OPENCV-EXTRA_ROOT}/modules")
+endif()
 
 # ----------------------------------------------------------------------------
 #  Autodetect if we are in a GIT repository

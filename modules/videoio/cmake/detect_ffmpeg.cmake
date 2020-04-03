@@ -1,5 +1,6 @@
 # --- FFMPEG ---
 if(NOT HAVE_FFMPEG AND OPENCV_FFMPEG_USE_FIND_PACKAGE)
+  if(NOT HUNTER_ENABLED) ### NO INDENT
   if(OPENCV_FFMPEG_USE_FIND_PACKAGE STREQUAL "1" OR OPENCV_FFMPEG_USE_FIND_PACKAGE STREQUAL "ON")
     set(OPENCV_FFMPEG_USE_FIND_PACKAGE "FFMPEG")
   endif()
@@ -7,6 +8,25 @@ if(NOT HAVE_FFMPEG AND OPENCV_FFMPEG_USE_FIND_PACKAGE)
   if(FFMPEG_FOUND OR FFmpeg_FOUND)
     set(HAVE_FFMPEG TRUE)
   endif()
+
+  else(HUNTER_ENABLED) ### NO INDENT
+    hunter_add_package(ffmpeg)
+    find_package(ffmpeg CONFIG REQUIRED)
+
+    set(FFMPEG_FOUND TRUE)
+    set(HAVE_FFMPEG TRUE)
+    foreach(lib avcodec avformat avutil swresample swscale)
+      get_target_property(
+        ${lib}_INCLUDE_DIR
+        ffmpeg::${lib}
+        INTERFACE_INCLUDE_DIRECTORIES
+      )
+      list(APPEND FFMPEG_INCLUDE_DIRS "${${lib}_INCLUDE_DIR}")
+      list(APPEND FFMPEG_LIBRARIES "ffmpeg::${lib}")
+      set(FFMPEG_lib${lib}_FOUND TRUE)
+    endforeach()
+    list(REMOVE_DUPLICATES FFMPEG_INCLUDE_DIRS)
+  endif()  
 endif()
 
 if(NOT HAVE_FFMPEG AND WIN32 AND NOT ARM AND NOT OPENCV_FFMPEG_SKIP_DOWNLOAD)

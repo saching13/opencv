@@ -6,6 +6,7 @@
 ocv_clear_vars(HAVE_QT HAVE_QT5)
 if(WITH_QT)
   if(NOT WITH_QT EQUAL 4)
+    hunter_add_package(Qt)
     find_package(Qt5 COMPONENTS Core Gui Widgets Test Concurrent REQUIRED NO_MODULE)
     if(Qt5_FOUND)
       set(HAVE_QT5 ON)
