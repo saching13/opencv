@@ -97,8 +97,8 @@ endif()
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/cpp-pm/hunter/archive/v0.10.9.tar.gz"
-    SHA1 "53b198e364dc7bc8360fc545f798563229bd7e20"
+    URL "https://github.com/cpp-pm/hunter/archive/v0.23.312.tar.gz"
+    SHA1 "42311324f6b859983d833cffc2151d0b86b8bea4"
 )
 
 option(ENABLE_PIC "Generate position independent code (necessary for shared libraries)" TRUE)
