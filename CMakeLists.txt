@@ -342,9 +342,6 @@ OCV_OPTION(WITH_PVAPI "Include Prosilica GigE support" OFF
 OCV_OPTION(WITH_ARAVIS "Include Aravis GigE support" OFF
   VISIBLE_IF NOT ANDROID AND NOT IOS AND NOT WINRT AND NOT WIN32
   VERIFY HAVE_ARAVIS_API)
-OCV_OPTION(WITH_QT "Build with Qt Backend support" OFF
-  VISIBLE_IF NOT ANDROID AND NOT IOS AND NOT WINRT
-  VERIFY HAVE_QT)
 OCV_OPTION(WITH_WIN32UI "Build with Win32 UI Backend support" ON
   VISIBLE_IF WIN32 AND NOT WINRT
   VERIFY HAVE_WIN32UI)
@@ -459,6 +456,12 @@ OCV_OPTION(WITH_TENGINE "Include Arm Inference Tengine support" OFF
 OCV_OPTION(WITH_ONNX "Include Microsoft ONNX Runtime support" OFF
   VISIBLE_IF TRUE
   VERIFY HAVE_ONNX)
+
+  OCV_OPTION(WITH_QT "Build with Qt Backend support" OFF
+  VISIBLE_IF NOT ANDROID AND NOT IOS AND NOT WINRT)
+
+  OCV_OPTION(HAVE_QT "Build with Qt Backend support" OFF
+  VISIBLE_IF NOT ANDROID AND NOT IOS AND NOT WINRT)
 
 # OpenCV build components
 # ===================================================
