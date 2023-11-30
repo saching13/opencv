@@ -735,7 +735,10 @@ endif()
 include(cmake/OpenCVFindFrameworks.cmake)
 
 include(cmake/OpenCVFindLibsGrfmt.cmake)
+message(STATUS "~~~~~~~~~~~~~~~~~~ Looking for QT in OpenCVFindLibsGUI ~~~~~~~~~~~~~~~~~~~~~~~~")
+
 include(cmake/OpenCVFindLibsGUI.cmake)
+message(STATUS "~~~~~~~~~~~~~~~~~~ finised looking  for QT  in OpenCVFindLibsGUI~~~~~~~~~~~~~~~~~~~~~~~~")
 include(cmake/OpenCVFindLibsVideo.cmake)
 include(cmake/OpenCVFindLibsPerf.cmake)
 include(cmake/OpenCVFindLAPACK.cmake)
@@ -1261,7 +1264,7 @@ status("  Windows RT support:" WINRT THEN YES ELSE NO)
 endif(WIN32)
 
 # ========================== GUI ==========================
-status("")
+status("~~~~~~~~~~~~~~~~~~~~~~~ GUI ~~~~~~~~~~~~~~~~~")
 status("  GUI: " "${OPENCV_HIGHGUI_BUILTIN_BACKEND}")
 
 if(WITH_QT OR HAVE_QT)

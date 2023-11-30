@@ -48,10 +48,12 @@ file(GLOB highgui_ext_hdrs
 list(REMOVE_ITEM highgui_ext_hdrs "${CMAKE_CURRENT_LIST_DIR}/include/opencv2/${name}/highgui_winrt.hpp")
 
 set(OPENCV_HIGHGUI_BUILTIN_BACKEND "")
+message(STATUS "~~~~~~~~~~~~~~~~~~ Before in highgui Looking for QT ~~~~~~~~~~~~~~~~~~~~~~~~")
 
 if(HAVE_QT)
   set(OPENCV_HIGHGUI_BUILTIN_BACKEND "QT${QT_VERSION_MAJOR}")
   add_definitions(-DHAVE_QT)
+  message(STATUS "~~~~~~~~~~~~~~~~~~ Looking for QT ~~~~~~~~~~~~~~~~~~~~~~~~")
 
   if(QT_VERSION_MAJOR GREATER 4)
     # "Automoc" doesn't work properly with opencv_world build, use QT<ver>_WRAP_CPP() directly

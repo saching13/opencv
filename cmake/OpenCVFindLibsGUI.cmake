@@ -26,7 +26,9 @@ macro(ocv_find_package_Qt OCV_QT_VER)
   endif()
 endmacro()
 
-if(WITH_QT)
+if(WITH_QT)            
+message(STATUS "~~~~~~~~~~~~~~~~~~ Looking for QT ~~~~~~~~~~~~~~~~~~~~~~~~")
+
   if(NOT WITH_QT GREATER 0)
     # BUG: Qt5Config.cmake script can't handle components properly: find_package(QT NAMES Qt6 Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets Test Concurrent)
     ocv_find_package_Qt(6 QUIET)
